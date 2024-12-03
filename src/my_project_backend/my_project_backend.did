@@ -5,7 +5,7 @@ type Blog = record {
     tags: vec text;
 };
 
-type Result = variant { Ok : text; Err : text; }
+type Result = variant { Ok : Blog; Err : text; }
 
 service : {
     "add_blog": (text, text, vec text) -> (Result);
