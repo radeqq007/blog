@@ -1,7 +1,7 @@
 <script setup>
 import { my_project_backend } from 'declarations/my_project_backend/index';
 import { ref } from 'vue';
-let greeting = ref('');
+let blogs = ref([]);
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -12,7 +12,19 @@ async function handleSubmit(e) {
   const splitedTags = tags.split(',');
 
   await my_project_backend.add_blog(title, content, splitedTags);
+  await getBlogs();
 }
+
+async function getBlogs() {
+  const tempBlogs = await my_project_backend.get_blogs();
+  blogs.value = tempBlogs.map(blog => {
+    return {
+      ...blog,
+      date: blog.date.toString(),
+    };
+  });
+}
+getBlogs();
 </script>
 
 <template>
@@ -35,5 +47,6 @@ async function handleSubmit(e) {
       </div>
       <button type="submit">Click to add!</button>
     </form>
+    {{ blogs }}
   </main>
 </template>
