@@ -16,6 +16,9 @@ fn add_config(new_config: Config) {
 
 #[ic_cdk::update]
 fn add_blog(title: String, content: String, tags: Vec<String>) -> Result<Blog, String>{
+    
+    ic_cdk::println!("Trying to add blog: (title: {}, content: {}, tags: {:?})", title, content, tags);
+
     let config = CONFIG.with(|config| config.borrow().clone());
 
 
