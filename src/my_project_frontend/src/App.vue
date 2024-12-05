@@ -28,24 +28,50 @@ getBlogs();
 </script>
 
 <template>
-  <main>
+  <main
+    class="bg- 100 h-screen flex flex-col justify-center items-center font-sans"
+  >
     <img src="/logo2.svg" alt="DFINITY logo" />
     <br />
     <br />
-    <form action="#" @submit="handleSubmit">
-      <div>
-        <p>Title:</p>
-        <input id="title" alt="title" type="text" />
+    <form
+      action="#"
+      @submit="handleSubmit"
+      class="w-1/3 flex flex-col justify-center items-center m-10 gap-8"
+    >
+      <div class="w-full">
+        <p class="text-xl">Title:</p>
+        <input
+          id="title"
+          alt="title"
+          type="text"
+          class="h-12 rounded-md p-2 border-gray-800 border-2 w-full"
+        />
       </div>
-      <div>
-        <p>Content:</p>
-        <input id="content" alt="content" type="text" />
+      <div class="w-full">
+        <p class="text-xl">Content:</p>
+        <textarea
+          id="content"
+          alt="content"
+          class="h-12 rounded-md p-2 border-gray-800 border-2 w-full px-4"
+        >
+        </textarea>
       </div>
-      <div>
-        <p>Tags:</p>
-        <input id="tags" alt="tags" type="text" />
+      <div class="w-full">
+        <p class="text-xl">Tags:</p>
+        <input
+          id="tags"
+          alt="tags"
+          type="text"
+          class="h-12 w-full rounded-md p-2 border-gray-800 border-2"
+        />
       </div>
-      <button type="submit">Click to add!</button>
+      <button
+        type="submit"
+        class="hover:bg-gray-800 p-4 w-1/4 rounded-xl hover:text-white border-gray-900 border-solid border-2 transition-colors"
+      >
+        Click to add!
+      </button>
     </form>
     {{ blogs }}
   </main>
