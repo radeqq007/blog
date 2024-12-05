@@ -6,10 +6,12 @@ let blogs = ref([]);
 async function handleSubmit(e) {
   e.preventDefault();
   const target = e.target;
-  const title = target.querySelector('#title');
+  const title = target.querySelector('#title').value;
   const content = target.querySelector('#content').value;
   const tags = target.querySelector('#tags').value;
   const splitedTags = tags.split(',');
+
+  console.log(title, content, tags);
 
   await my_project_backend.add_blog(title, content, splitedTags);
   await getBlogs();
