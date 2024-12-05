@@ -11,8 +11,6 @@ async function handleSubmit(e) {
   const tags = target.querySelector('#tags').value;
   const splitedTags = tags.split(',');
 
-  console.log(title, content, tags);
-
   await my_project_backend.add_blog(title, content, splitedTags);
   await getBlogs();
 }
@@ -80,6 +78,9 @@ getBlogs();
       v-for="blog in blogs"
     >
       <h2 class="font-bold text-3xl">{{ blog.title }}</h2>
+      <span>{{
+        new date(Number(blog.date) / 1_000_000).toLocaleString()
+      }}</span>
       <span class="tags">
         <span v-for="tag in blog.tags">
           {{ tag }}

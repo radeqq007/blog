@@ -21,24 +21,17 @@ fn get_config() -> Config {
 
 #[ic_cdk::update]
 fn add_blog(title: String, content: String, tags: Vec<String>) -> Result<Blog, String>{
-    
     ic_cdk::println!("Trying to add blog: (title: {}, content: {}, tags: {:?})", title, content, tags);
-
     let config = CONFIG.with(|config| config.borrow().clone());
-
-
     if title.len() > config.max_title_len as usize {
         return Err("Title is too long!".to_string())
     }
-
     if content.len() > config.max_content_len as usize {
         return Err("Content is too long!".to_string())
     }
-
     if tags.len() > config.max_tags_count as usize {
         return Err("Too many tags!".to_string())
     }
-
     let are_tags_in_config_tags = tags.iter().any(|tag| !config.tags.contains(tag));
     if are_tags_in_config_tags {
         return Err("Tags are not valid!".to_string()) 
@@ -46,15 +39,11 @@ fn add_blog(title: String, content: String, tags: Vec<String>) -> Result<Blog, S
     
     let blog = Blog::new(title, content, tags);
     BLOGS.with(|blogs| blogs.borrow_mut().push(blog));
-
     let last_blog = BLOGS.with(|blogs| 
         blogs
         .borrow()
         .last()
-        .expect("Vec should not be empty.")
-        .clone()
-    );
-
+        .expect("Vec should not be empty").clone());
     Ok(last_blog)
 }
 
