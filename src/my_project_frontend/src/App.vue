@@ -75,6 +75,17 @@ getBlogs();
         Click to add!
       </button>
     </form>
-    {{ blogs }}
+    <div
+      class="w-2/3 border-solid border-2 border-gray-800 m-2 px-10 py-5"
+      v-for="blog in blogs"
+    >
+      <h2 class="font-bold text-3xl">{{ blog.title }}</h2>
+      <span class="tags">
+        <span v-for="tag in blog.tags">
+          {{ tag }}
+        </span>
+      </span>
+      <p>{{ blog.content }}</p>
+    </div>
   </main>
 </template>
